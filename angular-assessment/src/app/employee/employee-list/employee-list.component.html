@@ -1,0 +1,26 @@
+
+<table class="table"  >
+    <thead >
+       <tr>
+          <th scope="col">name </th>
+          <th scope="col">gender</th>
+          <th scope="col">dob</th>
+          <th scope="col">salary</th>
+          <th scope="col">action</th>
+       </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let gopro of employeeData">
+          <td>{{gopro.name}}</td>
+          <td>{{gopro.gender | uppercase}}</td>
+          <td>{{gopro.dob | date:'medium'}}</td>
+          <td>{{gopro.salary | currency:'INR'}}</td>
+          <td>{{gopro.action}}<br>
+            <button class="btn btn-outline-success" type="button" routerLink="../employee-detail" [queryParams]="gopro">details</button>
+            <button class="btn btn-outline-success" (click)="removeAt(gopro)">delete</button>
+            <button class="btn btn-outline-success"  (click)="addNewItem(gopro)">Edit</button>
+          <br>
+         
+       </tr>
+    </tbody>
+ </table>

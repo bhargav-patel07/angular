@@ -1,0 +1,36 @@
+<form [formGroup]="employeeForm">
+    <input type="text" placeholder="enter firstname" formControlName="name" class="form-control">
+    <br>
+    <span *ngIf="fun['name'].invalid && (fun['name'].touched || fun['name'].dirty)" class="text-danger">
+        <span *ngIf="fun['name'].errors && fun['name'].errors['required']">
+            *please enter your name
+        </span>
+        <span *ngIf="fun['name'].errors && fun['name'].errors['minLength']">
+            *please enter your atlist 3 charecter
+        </span>
+    </span><br>
+    <input type="text" placeholder="gender" formControlName="gender" class="form-control"><br>
+    <span *ngIf="fun['gender'] && fun['gender'].invalid && fun['gender'].touched || fun['gender'].dirty" class="text-danger">
+        <span *ngIf="fun['gender'].errors && fun['gender'].errors['required']">
+            *please enter your gender
+        </span>
+        <span *ngIf="fun['gender'].errors && fun['gender'].errors['pattern']">
+            *please enter only alphabet
+        </span>
+    </span><br>
+    <input type="date" placeholder="dob" formControlName="dob" class="form-control"><br>
+    <span *ngIf="fun['dob'] && fun['dob'].invalid && fun['dob'].touched" class="text-danger">*please enter your
+        birthdate</span><br>
+    <input type="text" placeholder="salary" formControlName="salary" class="form-control"><br>
+    <span *ngIf="fun['salary'] && fun['salary'].invalid && fun['salary'].touched" class="text-danger">*please enter your
+        salary</span><br>
+
+
+    <br>
+    <div class="d-flex">
+        <button (click)="reset()">reset</button> 
+        <button (click)="save()">save</button>
+    </div>
+
+</form>
+<app-employee-list [employeeData]="employeeData"  (newItemEvent)="addItem($event)"></app-employee-list>
