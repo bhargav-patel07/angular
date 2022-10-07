@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,6 +9,8 @@ import { EmployeeModule } from './employee/employee.module';
 import { HomeComponent } from './home/home.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { UserPipe } from './pipe/user.pipe';
+import EmployeeServicesService from './services/employee-services.service';
+
 
 @NgModule({
   declarations: [
@@ -20,11 +23,12 @@ import { UserPipe } from './pipe/user.pipe';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    EmployeeModule
+    EmployeeModule,
+  HttpClientModule
 
     
   ],
-  providers: [],
+  providers: [EmployeeServicesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

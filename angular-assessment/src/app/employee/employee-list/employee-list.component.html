@@ -15,12 +15,12 @@
           <td>{{gopro.gender | uppercase}}</td>
           <td>{{gopro.dob | date:'medium'}}</td>
           <td>{{gopro.salary | currency:'INR'}}</td>
-          <td>{{gopro.action}}<br>
+          <td>
             <button class="btn btn-outline-success" type="button" routerLink="../employee-detail" [queryParams]="gopro">details</button>
-            <button class="btn btn-outline-success" (click)="removeAt(gopro)">delete</button>
-            <button class="btn btn-outline-success"  (click)="addNewItem(gopro)">Edit</button>
+            <button class="btn btn-outline-success" (click)="removeAt(gopro.id)">delete</button>
+            <button class="btn btn-outline-success"  (click)="addNewItem(gopro.id)">Edit</button>
           <br>
-         
+         </td>
        </tr>
     </tbody>
  </table>

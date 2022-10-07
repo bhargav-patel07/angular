@@ -1,4 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import EmployeeServicesService from 'src/app/services/employee-services.service';
+import { posts } from '../user.model';
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-list',
@@ -9,19 +12,40 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class EmployeeListComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<[]>();
-  @Input() employeeData: any;
+  @Input() employeeData: posts[];
   paginator: any;
   editCache: any;
+  employeeForm: any;
+  
+  
+  
+ 
 
-  constructor() {
+  constructor(private employeeService:EmployeeServicesService, private router: Router, public activatedRoute: ActivatedRoute) {
+    this.employeeData=[];
+    this.newItemEvent= new EventEmitter
+    
   }
 
   ngOnInit(): void {
   }
-  removeAt(gopro: any) {
-    this.employeeData.splice(gopro, 1);
+  removeAt(id:any) {
+    
+    this.employeeService.removeAt(id).subscribe((result)=>{
+      this.getEmployeeData();
+    });
+   
+    
   }
-  addNewItem(value: any) {
-    this.newItemEvent.emit(value);
+
+  public getEmployeeData(): void {
+    this.employeeService.getEmployee().subscribe((user: posts[]) => {
+      this.employeeData = user;
+    })
   }
+
+  public addNewItem(items:any): void {
+   this.employeeForm.patchValue(items)
+  }
+
 }
