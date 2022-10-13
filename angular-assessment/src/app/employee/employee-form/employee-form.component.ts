@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms'
+import { ActivatedRoute } from '@angular/router';
 import EmployeeServicesService from 'src/app/services/employee-services.service';
 import { posts } from '../user.model';
 @Component({
@@ -8,11 +9,18 @@ import { posts } from '../user.model';
   styleUrls: ['./employee-form.component.scss']
 })
 export class EmployeeFormComponent implements OnInit {
+  [x: string]: any;
   public employeeForm: FormGroup;
   public employeeData: posts[];
   public items: any;
+  public id:any;
 
-  constructor(private employeeservice: EmployeeServicesService) {
+  constructor(private employeeservice: EmployeeServicesService, private activatedRoute:ActivatedRoute) {
+    this.activatedRoute.params.subscribe((params)=>
+    {
+      this.id = params['id'];
+      this.getEmployeeData();
+    })
     this.employeeData = [];
     this.employeeForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -30,22 +38,27 @@ export class EmployeeFormComponent implements OnInit {
     return this.employeeForm.controls;
   }
 
-  public reset(): void {
-    this.employeeForm.reset();
-  }
 
-  public save() {
+  public save() {5
     if (this.employeeForm.valid) {
-      this.employeeData.push(this.employeeForm.value);
+      // this.employeeData.push(this.employeeForm.value);
+     if (this.id){
+      this.updateEmployee();
+     }
+     else{
       this.employeeservice.onPost(this.employeeForm.value).subscribe((result) => {
         this.getEmployeeData();
+        console.log(result)
       })
+     }
+     this.getEmployeeData()
     }
     this.employeeForm.reset();
   }
-  addItem(value: any) {
-
-    this.employeeForm.patchValue(value);
+ 
+  
+  public reset(): void {
+    this.employeeForm.reset();
   }
   // get data
   public getEmployeeData(): void {
@@ -59,6 +72,23 @@ export class EmployeeFormComponent implements OnInit {
     })
   }
  
+  // getEditData(){
+  //   this.employeeservice.getEmpId(this.id).subscribe((data)=>
+  //   {
+  //     this.employeeForm.patchValue(data);
+  //   })
+  // }
+
+  // updateemployee
+ public updateEmployee() : void{
+    this.employeeservice.updateEmployee(this.employeeForm.value,this.id).subscribe((response:posts) => {
+    this.getEmployeeData()
+    });
+  }
+  
+  addItem(value: posts) {
+    this.employeeForm.patchValue(value);
+  }
 }
 
 

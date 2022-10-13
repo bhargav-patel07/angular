@@ -11,7 +11,7 @@ import { Router,ActivatedRoute } from '@angular/router';
 
 export class EmployeeListComponent implements OnInit {
 
-  @Output() newItemEvent = new EventEmitter<[]>();
+  @Output() public edit: EventEmitter<any>;
   @Input() employeeData: posts[];
   paginator: any;
   editCache: any;
@@ -23,7 +23,7 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(private employeeService:EmployeeServicesService, private router: Router, public activatedRoute: ActivatedRoute) {
     this.employeeData=[];
-    this.newItemEvent= new EventEmitter
+    this.edit= new EventEmitter()
     
   }
 
@@ -44,8 +44,8 @@ export class EmployeeListComponent implements OnInit {
     })
   }
 
-  public addNewItem(items:any): void {
-   this.employeeForm.patchValue(items)
+  public editItem(user:posts): void {
+    this.router.navigate(['employee/employee-edit',user.id])
+    this.edit.emit(user)
   }
-
 }

@@ -1,6 +1,6 @@
 
 <table class="table"  >
-    <thead >
+    <thead>
        <tr>
           <th scope="col">name </th>
           <th scope="col">gender</th>
@@ -18,7 +18,7 @@
           <td>
             <button class="btn btn-outline-success" type="button" routerLink="../employee-detail" [queryParams]="gopro">details</button>
             <button class="btn btn-outline-success" (click)="removeAt(gopro.id)">delete</button>
-            <button class="btn btn-outline-success"  (click)="addNewItem(gopro.id)">Edit</button>
+            <button class="btn btn-outline-success"  (click)="editItem(gopro)">Edit</button>
           <br>
          </td>
        </tr>

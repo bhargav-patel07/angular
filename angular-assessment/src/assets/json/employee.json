@@ -1,11 +1,11 @@
 {
   "employee": [
     {
-      "name": "almira",
-      "gender": "vsdfvsdv",
-      "dob": "2022-09-23",
-      "salary": "4343434",
-      "id": 15
+      "name": "bhargav",
+      "gender": "male",
+      "dob": "2022-10-28",
+      "salary": "232323",
+      "id": 1
     }
   ]
 }

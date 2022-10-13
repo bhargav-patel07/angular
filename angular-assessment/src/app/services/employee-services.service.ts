@@ -9,6 +9,7 @@ import { posts } from '../employee/user.model';
 export default class EmployeeServicesService {
 
   public baseUrl: any
+  updateEmployee: any;
   constructor(private http: HttpClient) {
     this.baseUrl = "http://localhost:3000/";
   }
@@ -29,11 +30,11 @@ removeAt(id:number){
   const url: string = this.baseUrl + 'employee/' + id;
   return this.http.delete(url);
 }
-// edit
-// addNewItem(user:posts,id:number):Observable<any>{
-//   const url:string= `${this.baseUrl}employee${id}`;
-//   return this.http.put(url,user);
-// }
+
+public NewItem(user:posts,id:number):Observable<any>{
+  const url:string= `${this.baseUrl}employee${id}`;
+  return this.http.put(url,user);
+}
 
 getEmpId(id: number):Observable<any>{
   const url : string = this.baseUrl + 'employee/' + id;
@@ -41,10 +42,9 @@ getEmpId(id: number):Observable<any>{
 }
 
 
- addNewItem(user:posts,id:number):Observable<any>{
+editItem(user:posts,id:number):Observable<posts>{
   const url : string = this.baseUrl + 'employee/' + id;
-
-   return this.http.put(url,user);
+   return this.http.post<posts>(url,user);
  }
 
 }

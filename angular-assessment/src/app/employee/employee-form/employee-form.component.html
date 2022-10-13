@@ -1,6 +1,5 @@
-<form [formGroup]="employeeForm">
-    <input type="text" placeholder="enter firstname" formControlName="name" class="form-control">
-    <br>
+<form [formGroup]="employeeForm" class="form-table" >
+    <input type="text" placeholder="enter firstname" formControlName="name" class="form-control"><br>
     <span *ngIf="fun['name'].invalid && (fun['name'].touched || fun['name'].dirty)" class="text-danger">
         <span *ngIf="fun['name'].errors && fun['name'].errors['required']">
             *please enter your name
@@ -33,4 +32,5 @@
     </div>
 
 </form>
-<app-employee-list [employeeData]="employeeData"  (newItemEvent)="addItem($event)"></app-employee-list>
+
+<app-employee-list [employeeData]="employeeData"  (edit)="addItem($event)" ></app-employee-list>
