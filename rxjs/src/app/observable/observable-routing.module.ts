@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FromEventComponent } from './from-event/from-event.component';
+import { IntervalComponent } from './interval/interval.component';
 import { ListComponent } from './list/list.component';
 import { ObservableComponent } from './observable.component';
 
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'from-event',
         component: FromEventComponent
+      },
+      {
+        path: 'interval',
+        component:IntervalComponent
       }
     ]
   }

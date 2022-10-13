@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
+import { DataService } from 'src/app/servises/data.service';
 
 @Component({
   selector: 'app-from-event',
@@ -8,17 +9,22 @@ import { fromEvent } from 'rxjs';
 })
 export class FromEventComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  constructor(private serviseData:DataService) { }
   @ViewChild('addBtn')
   public addBtn!: ElementRef<any>;
 
-  ngAfterViewInit(): void {
-    fromEvent(this.addBtn.nativeElement, 'click').subscribe(res => {
-      console.log(res)
-    })
-  }
+ 
 
   ngOnInit(): void {
 
+  }
+  ngAfterViewInit(): void {
+    let count = 1;
+    fromEvent(this.addBtn.nativeElement, 'click').subscribe(res => {
+      let countVal='one ' + count++
+      console.log(countVal );
+      this.serviseData.print(countVal,'users');
+      this.serviseData.print(countVal,'users1');
+    })
   }
 }
