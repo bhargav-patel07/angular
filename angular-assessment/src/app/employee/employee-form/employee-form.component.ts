@@ -39,7 +39,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
 
-  public save() {5
+  public save() {
     if (this.employeeForm.valid) {
       // this.employeeData.push(this.employeeForm.value);
      if (this.id){

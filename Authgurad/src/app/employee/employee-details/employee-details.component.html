@@ -1,0 +1,6 @@
+<h2>Employee Details</h2>
+<ul class="list-group">
+    <li class="list-group">Employee Name: {{employee.name | titlecase}}</li>
+    <li class="list-group">Date of Birth: {{employee.dob | date : 'mediumDate'}}</li>
+    <li class="list-group">Salary: {{employee? employee.salary: 0 | indianCurrency}}</li>
+</ul>

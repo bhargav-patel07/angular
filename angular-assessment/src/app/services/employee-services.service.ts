@@ -41,7 +41,6 @@ getEmpId(id: number):Observable<any>{
   return this.http.get(url)
 }
 
-
 editItem(user:posts,id:number):Observable<posts>{
   const url : string = this.baseUrl + 'employee/' + id;
    return this.http.post<posts>(url,user);
