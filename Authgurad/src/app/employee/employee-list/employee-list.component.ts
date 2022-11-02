@@ -11,7 +11,7 @@ import { EmployeeService } from '../service/employee.service';
 export class EmployeeListComponent implements OnInit {
 
 
-  // @Input() public employeeList: Employee[] ;
+  
   public employeeList: any[];
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -22,7 +22,7 @@ export class EmployeeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+    
 console.log('this.activatedRoute',this.activatedRoute);
     this.employeeList = this.activatedRoute.snapshot.data['users'];
 

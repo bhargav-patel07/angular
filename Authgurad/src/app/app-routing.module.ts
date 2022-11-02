@@ -9,8 +9,12 @@ import { LoginComponent } from './user-register/login/login.component';
 import { RegisterComponent } from './user-register/register/register.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login', 
+  component: LoginComponent
+ },
+  { path: 'register',
+   component: RegisterComponent 
+  },
   {
     path: '',
     pathMatch: 'full',
@@ -23,29 +27,7 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard]
 
   },
-  // {
-  //   path: 'home',
-  //   component: HomeComponent,
-  //   // canActivate: [AuthGuardGuard],
-  //   // canActivateChild: [AuthGuardGuard],
-  //   children: [
-  //     {
-  //       path: 'details',
-  //       component: ContactComponent,
-  //       // canActivate: [AuthGuardGuard]
-  //     },
-  //     {
-  //       path: 'details',
-  //       component: ContactComponent,
-  //       // canActivate: [AuthGuardGuard]
-  //     },
-  //     {
-  //       path: 'details',
-  //       component: ContactComponent,
-  //       // canActivate: [AuthGuardGuard]
-  //     },
-  //   ]
-  // },
+ 
   {
     path: 'contact',
     component: ContactComponent,

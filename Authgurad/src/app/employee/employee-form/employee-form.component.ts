@@ -16,15 +16,18 @@ import { EmployeeService } from '../service/employee.service';
 export class EmployeeFormComponent implements OnInit {
 
   public employeeData: Employee[];
-  // public employeeData$: Observable<Employee[]>;
+
 
   public isSubmitted: boolean = false;
   public title: string;
   public employeeForm: FormGroup;
 
-  // public empname: string
-
+  // Profile
+  public displayprofile!:File;
+  public profilepath:string
   public id: any;
+  public imageString: any;
+
   constructor(
     public formbuilder: FormBuilder,
     private employeeService: EmployeeService,
@@ -33,6 +36,7 @@ export class EmployeeFormComponent implements OnInit {
   ) {
     this.title = 'Add';
     this.employeeData = [];
+    
     this.employeeForm = this.employeeFormBuilder();
 
     this.route.params.subscribe(params => {
@@ -40,13 +44,16 @@ export class EmployeeFormComponent implements OnInit {
       this.getEmployeeById()
     });
 
+    this.route.data.subscribe((data) =>{
+    this.employeeForm.patchValue(data['Employee']);
+    this.imageString = this.employeeForm.get('profilepath')?.value
+    });
+this.profilepath="";
+this.imageString = '';
   }
-
-
   ngOnInit(): void {
     this.getEmployee();
   }
-
   public onSubmit(): void {
     this.isSubmitted = true;
     if (this.employeeForm.valid) {
@@ -55,13 +62,11 @@ export class EmployeeFormComponent implements OnInit {
         this.updateEmployee()
       }
       else {
-
+        this.employeeForm.controls['profilepath'].setValue(this.imageString)
         this.employeeService.addEmployee(this.employeeForm.value).subscribe((response) => {
           this.getEmployee();
         });
-
         this.employeeForm.reset();
-        // console.log(this.employeeData);
       }
     this.router.navigate(['employee/list']);
       this.onReset();
@@ -69,6 +74,7 @@ export class EmployeeFormComponent implements OnInit {
   }
 
   public updateEmployee(): void {
+    this.employeeForm.controls['profilepath'].setValue(this.imageString)
     this.employeeService.updateEmployee(this.employeeForm.value, this.id).subscribe((response) => {
       this.getEmployee();
     });
@@ -88,33 +94,45 @@ export class EmployeeFormComponent implements OnInit {
       this.employeeForm.patchValue(employee);
     });
   }
-
+/**
+ * validators
+ */
   private employeeFormBuilder(): FormGroup {
     return this.employeeForm = this.formbuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       gender: ['', [Validators.required]],
       dob: ['', Validators.required],
       salary: ['', [Validators.required, Validators.pattern('[0-9]*')]],
+      profile:['',Validators.required],
+      profilepath:[''],
       id: [],
+
     })
   }
   /**
    * getEmployee
    */
   private getEmployee(): void {
-    // this.employeeService.getEmployee().subscribe((employee: Employee[]) => {
-    //   console.log(employee);
-    // });
+    
     this.employeeService.getEmployee().subscribe((employee: Employee[]) => {
       this.employeeData = employee;
     })
 
-    // this.employeeData$ = this.employeeService.getEmployee();
+   
 
   }
-  // /** Destroy the subscriber */
-  // public ngOnDestroy(): void {
-  //   this.destroy.next(true);
-  //   this.destroy.complete();
-  // }
+  
+/**
+ *  imageUplode
+ */
+  public imageUploaded(event: any) {
+    this.displayprofile = event.target.files[0];
+    console.log(this.displayprofile)
+    const reader = new FileReader();
+    reader.readAsDataURL(this.displayprofile);
+    reader.onload = () => {
+      this.imageString = reader.result;
+      console.log(this.imageString)
+    }
+  }
 }

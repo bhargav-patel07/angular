@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { AfterContentChecked } from '@angular/core';
 import { AuthService } from './core/service/auth.service';
 
 @Component({
@@ -17,13 +16,10 @@ export class AppComponent implements OnInit {
     this.isMenu = false;
   }
   ngOnInit(): void {
-   
-  }
-
-  ngAfterContentChecked():void{
     this.authService.userIsLoginObservable$.subscribe((res) => {
       this.isMenu = res
     })
   }
+
 }
 

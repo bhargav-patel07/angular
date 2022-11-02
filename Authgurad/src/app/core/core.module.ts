@@ -8,12 +8,14 @@ import { CanDeactivateGuard } from './guard/can-deactivate.guard';
 import { UserGuard } from './guard/user.guard';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
-    HeaderNavbarComponent
+    HeaderNavbarComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -24,9 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       timeOut: 3000,
       preventDuplicates: true,
       enableHtml: true,
-      // autoDismiss: false,
-      // disableTimeOut: true
-    }),
+          }),
+  
   ],
   providers:[
     AuthGuardGuard,
@@ -37,7 +38,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   exports: [
     HeaderNavbarComponent,
     ReactiveFormsModule,
-
+FooterComponent
   ]
 })
 export class CoreModule { }

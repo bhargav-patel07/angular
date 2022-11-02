@@ -1,4 +1,19 @@
 table{
     width:700px;
-    margin: auto;
+   
+}
+.container{
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+image{
+    margin: -16px;
+}
+.h{
+    height: 890px;
+    overflow: hidden;
 }

@@ -21,10 +21,10 @@ const routes: Routes = [
         path: 'add',
         component: EmployeeFormComponent,
       },
-      // {
-      //   path: 'edit/:id',
-      //   component: EmployeeFormComponent,
-      // },
+      {
+        path: 'edit/:id',
+        component: EmployeeFormComponent,
+      },
       {
         path: 'list',
         component: EmployeeListComponent,

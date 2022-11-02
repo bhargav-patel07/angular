@@ -1,21 +1,27 @@
-<h2 class="text-center">Employee List</h2>
-<br />
-<table class="table">
+<div class="h position-relative">
+  <img src="../../.././assets/images/360_F_439595003_IAMa9verVv8XlT9dVDtKm7AHQw5EpRpx.jpg" alt="" class="h-100 w-100">
+  <h2 class="position-absolute t-0 text-center">Employee List</h2>
+  <br>
+<table class="table container position-absolute">
   <thead>
     <tr>
+      <th>profile</th>
       <th>Name</th>
       <th>Gender</th>
       <th>D.O.B</th>
       <th>salary</th>
       <th>Actions</th>
+    
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employeeList">
+      <td><img [src]="employee.profilepath" width="50px" height="50px" class="rounded-circle "></td>
       <td>{{ employee.name | titlecase }}</td>
       <td>{{employee.gender | uppercase}}</td>
       <td>{{ employee.dob | date: "mediumDate" }}</td>
       <td>{{ employee.salary | indianCurrency }}</td>
+     
       <td>
         <button
           class="btn-danger me-2"
@@ -38,3 +44,5 @@
     </tr>
   </tbody>
 </table>
+
+</div>

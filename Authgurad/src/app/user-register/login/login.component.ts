@@ -2,7 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -30,12 +29,9 @@ export class LoginComponent implements OnInit {
         private authenticationService: UserService,
         private alertService: ToastrService
     ) {
-        // redirect to home if already logged in
-        // if (this.authenticationService.currentUserValue) {
-        //     this.router.navigate(['/']);
-        // }
+       
         this.loginForm = this.buildForm()
-        // get return url from route parameters or default to '/'
+       
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
@@ -50,7 +46,6 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
         }
@@ -81,5 +76,8 @@ export class LoginComponent implements OnInit {
             password: ['', Validators.required]
         });
     }
+    public onRegister(){
+        this.router.navigateByUrl("register");
+        }
 }
 
